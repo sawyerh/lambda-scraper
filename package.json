@@ -1,7 +1,7 @@
 {
   "name": "lambda-scraper",
   "version": "1.0.0",
-  "main": "lambda.js",
+  "main": "index.js",
   "scripts": {
     "zip": "node-lambda package -p build -n handler"
   },
