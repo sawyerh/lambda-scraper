@@ -1,0 +1,17 @@
+{
+  "name": "lambda-scraper",
+  "version": "1.0.0",
+  "main": "lambda.js",
+  "scripts": {
+    "zip": "node-lambda package -p build -n handler"
+  },
+  "dependencies": {
+    "async": "^1.5.2",
+    "cheerio": "^0.20.0",
+    "request": "^2.72.0"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.3.9",
+    "node-lambda": "^0.8.1"
+  }
+}
