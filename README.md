@@ -97,8 +97,11 @@ $ npm run zip
 
 **Create the Lambda function**
 
-- Start with the "canary" blueprint
-- Create a CloudWatch event and set the rate (ie. `20 2 * * ? *` to run once a day at 2:20 UTC)
+1. Start with the "canary" blueprint
+1. Create a CloudWatch event and set the rate (ie. `20 2 * * ? *` to run once a day at 2:20 UTC)
+
+Lambda settings:
+
 - Runtime: Node.js 4.3
 - Handler: `index.handler`
 - Memory: 128mb should be enough
