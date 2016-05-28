@@ -4,6 +4,8 @@ Lambda Scraper is an [AWS Lambda](https://aws.amazon.com/lambda/) function that:
 
 The initial use case was as a Careers page scraper for my 👫, cause it's hard out there for fashion students, and a lot of Careers pages offer no way of being notified of new postings. I'm not sure what else you might use this for, but if you come up with something good, [let me know](https://twitter.com/sawyerh).
 
+![](https://dl.dropboxusercontent.com/u/74524/nodelete/lambda-scraper.png)
+
 # Install
 
 Experience working with AWS will be super handy if you want to set this up for yourself. If my instructions are unclear and you'd like to get this setup, ping me and I _might_ put together a video walkthrough if you pressure me enough.
