@@ -37,15 +37,15 @@ As an example, if the HTML you're trying to scrape from a page (ie. `https://exa
 
 In `pages.js`, you'd enter:
 
-```json
+```js
 {
-  "url": "https://example.com/listing",
-  "keywords": ["sales", "marketing", "fashion", "jewlery"],
-  "parent": ".posting",
-  "selectors": {
-    "title": "h1", // required
-    "url": ".more", // required
-    "location": ".location" // optional key/value (title/selector)
+  url: "https://example.com/listing", // required
+  keywords: ["sales", "marketing", "fashion", "jewlery"], // optional
+  parent: ".posting", // required
+  selectors: {
+    title: "h1", // required
+    url: ".more", // required
+    location: ".location" // optional key/value (title/selector)
   }
 }
 ```
@@ -68,16 +68,16 @@ For example, given a JSON endpoint (ie. `https://example.com/listing.json`) with
 
 In `pages.js` you'd enter:
 
-```json
+```js
 {
-  "url": "https://example.com/listing.json",
-  "json": true,
-  "keywords": ["sales", "marketing", "fashion", "jewlery"],
-  "parent": "postings",
-  "selectors": {
-    "title": "$.title",
-    "url": "$.link",
-    "center": "$.location.title"
+  url: "https://example.com/listing.json",
+  json: true, // required for JSON
+  keywords: ["sales", "marketing", "fashion", "jewlery"],
+  parent: "postings",
+  selectors: {
+    title: "$.title",
+    url: "$.link",
+    center: "$.location.title"
   }
 }
 ```
