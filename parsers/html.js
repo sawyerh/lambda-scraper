@@ -1,5 +1,5 @@
-var arrayContains = require('../utilities/array-contains')
-  , cheerio = require('cheerio');
+var arrayContains = require('../utilities/array-contains');
+var cheerio = require('cheerio');
 
 /**
  * Find the parent(s) in the HTML and parse each one
@@ -13,7 +13,7 @@ var parseHTML = function(page, html, savedState) {
   var $parents = $(page.parent);
   var results = [];
 
-  if(!$parents.length) {
+  if (!$parents.length) {
     return [{
       page: page.url,
       error: "Couldn't find element(s) to scrape"
@@ -23,7 +23,7 @@ var parseHTML = function(page, html, savedState) {
   $parents.each((i, elem) => {
     var result = parseHTMLParent(page, elem, $, savedState);
 
-    if(result)
+    if (result)
       results.push(result);
   });
 
@@ -40,26 +40,26 @@ var parseHTML = function(page, html, savedState) {
                     already scraped or if it doesn't match the keywords we passed through
  */
 var parseHTMLParent = function(page, elem, $, savedState) {
-  var $parent = $(elem)
-    , keys = Object.getOwnPropertyNames(page.selectors);
+  var $parent = $(elem);
+  var keys = Object.getOwnPropertyNames(page.selectors);
 
   var result = {
-    "page":  page.url,
-    "url":   $parent.find(page.selectors.url).attr('href'),
-    "title": $parent.find(page.selectors.title).text().trim()
+    page: page.url,
+    url: $parent.find(page.selectors.url).attr('href'),
+    title: $parent.find(page.selectors.title).text().trim()
   };
 
-  if(arrayContains(savedState, result.url)) return;
+  if (arrayContains(savedState, result.url)) return;
 
   // If we specify keywords, only return the result
   // when the title contains one of the keywords
-  if(page.keywords && page.keywords.length){
+  if (page.keywords && page.keywords.length) {
     var rx = new RegExp(page.keywords.join('|'), 'ig');
-    if(result.title.search(rx) < 0) return;
+    if (result.title.search(rx) < 0) return;
   }
 
-  keys = keys.filter((key) => (key !== "url" && key !== "title") );
-  keys.forEach((key) => {
+  keys = keys.filter(key => (key !== "url" && key !== "title"));
+  keys.forEach(key => {
     var selector = page.selectors[key];
     var val = $parent.find(selector).text().trim();
     result[key] = val;

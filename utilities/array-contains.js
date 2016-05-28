@@ -5,6 +5,6 @@
  * @return {boolean} True if the needle was found, otherwise false
  */
 module.exports = function(haystack, needle) {
-  var i = haystack.findIndex((str) => str === needle);
+  var i = haystack.findIndex(str => str === needle);
   return (i >= 0);
 };

@@ -15,14 +15,14 @@ var awsConfig = new aws.Config({
 });
 var s3 = new aws.S3(awsConfig);
 
-exports.handler = function(){
+exports.handler = function() {
   var params = {
     Bucket: config.aws_bucket,
     Key: config.filename
   };
 
   s3.getObject(params, function(err, data) {
-    if(err) console.log(err.code, config.aws_filename);
+    if (err) console.log(err.code, config.aws_filename);
     savedState = (err && err.code === "NoSuchKey") ? [] : JSON.parse(data.Body);
     var results = [];
 
@@ -30,7 +30,7 @@ exports.handler = function(){
       request(page.url, (error, response, body) => {
         var pageResults = page.json ? parseJSON(page, body, savedState) : parseHTML(page, body, savedState);
 
-        if(debug)
+        if (debug)
           console.log(`Found results for ${page.url}`, pageResults);
 
         results = results.concat(pageResults);
@@ -75,22 +75,22 @@ var sendResults = function(results) {
       }
     },
     Source: config.email_from
-  }
+  };
 
-  ses.sendEmail(params, function(err, data) {
+  ses.sendEmail(params, function(err) {
     if (err) console.log(err, err.stack);
-    else     console.log(`Emailed ${results.length} results`);
+    else console.log(`Emailed ${results.length} results`);
   });
 };
 
 /**
  * Creates the email HTML for the given results
  * @param {array} results - The new results we've found
- * @return {string}
+ * @return {string} The email's HTML
  */
 var getResultsEmailHTML = function(results) {
-  return results.map((result) => {
-    return Object.getOwnPropertyNames(result).map((key) => {
+  return results.map(result => {
+    return Object.getOwnPropertyNames(result).map(key => {
       return `<strong>${key}</strong>: ${result[key]}`;
     }).join('<br />');
   }).join('<br /><br />');
@@ -101,17 +101,17 @@ var getResultsEmailHTML = function(results) {
  * @param {array} results - The new results we've found
  */
 var updateState = function(results) {
-  if(!results.length || debug) return;
+  if (!results.length || debug) return;
   var pendingState = results
-                      .map((r) => r.url)
-                      .filter((url) => !!url);
+                      .map(r => r.url)
+                      .filter(url => !!url);
 
   s3.putObject({
     Bucket: config.aws_bucket,
     Key: config.filename,
     Body: JSON.stringify(savedState.concat(pendingState))
-  }, function(err, data) {
+  }, function(err) {
     if (err) console.log(err, err.stack);
-    else     console.log(`Added ${pendingState.length} items to saved state`);
+    else console.log(`Added ${pendingState.length} items to saved state`);
   });
 };
