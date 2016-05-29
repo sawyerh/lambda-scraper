@@ -22,7 +22,7 @@ exports.handler = function() {
   };
 
   s3.getObject(params, function(err, data) {
-    if (err) console.log(err.code, config.aws_filename);
+    if (err) console.log(err.code, config.filename);
     savedState = (err && err.code === "NoSuchKey") ? [] : JSON.parse(data.Body);
     var results = [];
 
