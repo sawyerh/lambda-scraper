@@ -52,6 +52,8 @@ In `pages.js`, you'd enter:
 }
 ```
 
+**Quick note on images:** If you enter a key of `image` or `thumbnail`, the selector must point to an `img` tag.
+
 ## JSON pages
 
 For JSON endpoints, use `$` as the top-level object within the `parent` array
