@@ -101,6 +101,7 @@ $ npm run zip
 
 1. Start with the "canary" blueprint
 1. Create a CloudWatch event and set the rate (ie. `20 2 * * ? *` to run once a day at 2:20 UTC)
+1. In the final review step of creating the Lambda function, make sure to enable the event source.
 
 Lambda settings:
 
