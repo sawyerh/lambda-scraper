@@ -117,6 +117,6 @@ In your termainal, you can then run the below (from the root of the project) to 
 
 ```
 $ node
- > require('index').handler()
+ > require('./index').handler()
  Found results for...
 ```
