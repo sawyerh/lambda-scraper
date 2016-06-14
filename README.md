@@ -2,7 +2,9 @@
 
 Lambda Scraper is an [AWS Lambda](https://aws.amazon.com/lambda/) function that: Scrapes any number of web pages you define, searching for new links on the page, and (optionally) filters the results by keyword. If it finds results, it sends an email to you via [AWS SES](https://aws.amazon.com/ses/). 
 
-The initial use case was as a Careers page scraper for my 👫, cause it's hard out there for fashion students, and a lot of Careers pages offer no way of being notified of new postings. I'm not sure what else you might use this for, but if you come up with something good, [let me know](https://twitter.com/sawyerh).
+Use it to add notification functionality to sites that don't natively have notifications. Use it to be notified of new product listings, cheap flights, job listings, or whatever you dream up.
+
+The initial use case was as a Careers page scraper for my 👫, because it's hard out there for fashion students, and a lot of Careers pages offer no way of being notified of new postings. I'm not sure what else you might use this for, but if you come up with something good, [let me know](https://twitter.com/sawyerh).
 
 ![](https://dl.dropboxusercontent.com/u/74524/nodelete/lambda-scraper.png)
 
