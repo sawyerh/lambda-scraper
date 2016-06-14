@@ -101,10 +101,13 @@ var getResultsEmailHTML = function(results) {
  * @param {array} results - The new results we've found
  */
 var updateState = function(results) {
-  if (!results.length || debug) return;
+  if (!results.length) return;
   var pendingState = results
                       .map(r => r.url)
                       .filter(url => !!url);
+
+  if (debug)
+    return console.log(`Add ${pendingState.length} new items to the saved state`);
 
   s3.putObject({
     Bucket: config.aws_bucket,
