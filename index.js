@@ -101,7 +101,7 @@ var getResultsEmailHTML = function(results) {
 
 var getHTMLValue = function(key, value) {
   if (key === 'image' || key === 'thumbnail') {
-    return `<img src="${value}" alt="${value}" />`;
+    return `<br /><img style="max-width: 100%;" src="${value}" alt="${value}" />`;
   }
 
   return value;
