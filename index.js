@@ -53,7 +53,10 @@ exports.handler = function() {
  * @param {array} results - The new results we've found
  */
 var sendResults = function(results) {
-  if (debug) return;
+  var body = getResultsEmailHTML(results);
+
+  if (debug)
+    return console.log("Email", body);
 
   var ses = new aws.SES(awsConfig);
 
@@ -64,7 +67,7 @@ var sendResults = function(results) {
     Message: {
       Body: {
         Html: {
-          Data: getResultsEmailHTML(results)
+          Data: body
         },
         Text: {
           Data: JSON.stringify(results)
@@ -91,9 +94,17 @@ var sendResults = function(results) {
 var getResultsEmailHTML = function(results) {
   return results.map(result => {
     return Object.getOwnPropertyNames(result).map(key => {
-      return `<strong>${key}</strong>: ${result[key]}`;
+      return `<strong>${key}</strong>: ${getHTMLValue(key, result[key])}`;
     }).join('<br />');
   }).join('<br /><br />');
+};
+
+var getHTMLValue = function(key, value) {
+  if (key === 'image' || key === 'thumbnail') {
+    return `<img src="${value}" alt="${value}" />`;
+  }
+
+  return value;
 };
 
 /**

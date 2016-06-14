@@ -61,7 +61,15 @@ var parseHTMLParent = function(page, elem, $, savedState) {
   keys = keys.filter(key => (key !== "url" && key !== "title"));
   keys.forEach(key => {
     var selector = page.selectors[key];
-    var val = $parent.find(selector).text().trim();
+    var $element = $parent.find(selector);
+    var val;
+
+    if (key === "image" || key === "thumbnail") {
+      val = $element.attr('src');
+    } else {
+      val = $element.text().trim();
+    }
+
     result[key] = val;
   });
 
