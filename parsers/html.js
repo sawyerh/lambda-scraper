@@ -49,7 +49,8 @@ var parseHTMLParent = function(page, elem, $, savedState) {
     title: $parent.find(page.selectors.title).text().trim()
   };
 
-  if (arrayContains(savedState, result.url)) return;
+  if(typeof result.url === 'undefined' || arrayContains(savedState, result.url))
+    return;
 
   // If we specify keywords, only return the result
   // when the title contains one of the keywords
